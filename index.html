@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Soni Ji ✨</title>
+    <title>FOR SURUCHI ✨</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Great+Vibes&display=swap');
 
@@ -19,7 +19,6 @@
             height: 100vh;
             overflow: hidden;
             font-family: 'Poppins', sans-serif;
-            /* Soft, light pastel theme for perfect readability */
             background: linear-gradient(135deg, #fff0f5 0%, #ffd1dc 100%);
             color: #333333;
             display: flex;
@@ -65,7 +64,7 @@
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
             margin-bottom: 15px;
-            color: #c2185b; /* Deep pink for heading */
+            color: #c2185b;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -74,7 +73,7 @@
             margin-bottom: 35px;
             line-height: 1.6;
             max-width: 90%;
-            color: #4a4a4a; /* Dark grey for easy reading */
+            color: #4a4a4a;
             font-weight: 500;
         }
 
@@ -86,7 +85,6 @@
             overflow: hidden;
             border: 4px solid #fff;
             box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2);
-            /* Soft floating animation instead of heavy pulse */
             animation: float 4s ease-in-out infinite; 
         }
 
@@ -137,7 +135,6 @@
             gap: 10px;
         }
 
-        /* Background Elements - Optimized for zero lag */
         #bg-container {
             position: absolute;
             inset: 0;
@@ -164,7 +161,7 @@
 </head>
 <body>
 
-    <div class="top-handle">Instagram ✨ @smss1708</div>
+    <div class="top-handle">Follow  ✨ @smss1708</div>
 
     <audio id="bg-music" loop>
         <source src="tere-liye.mp3" type="audio/mpeg"> 
@@ -173,42 +170,42 @@
     <div id="bg-container"></div>
 
     <div class="page active" id="page-1">
-        <h1>Hi Soni Ji ✨</h1>
-        <p>I am sivasingh I made something for you🥰...</p>
-        <button class="btn" onclick="nextPage(1)">Open it 😊</button>
+        <h1>HI SURUCHI ✨</h1>
+        <p>I am sivasingh and and I want to tell something 👈👉hehe...</p>
+        <button class="btn" onclick="nextPage(1)">OPEN IT 😊</button>
     </div>
 
     <div class="page" id="page-2">
         <div class="gif-container">
             <img src="flower1.gif" alt="Cute Flower">
         </div>
-        <p>Aaj aapse milkar sach mein bohot achha laga! 🌸</p>
-        <button class="btn" onclick="nextPage(2)">Next ✨</button>
+        <p>IT WAS REALLY WONDERFUL MEETING YOU TODAY! 🌸</p>
+        <button class="btn" onclick="nextPage(2)">NEXT ✨</button>
     </div>
 
     <div class="page" id="page-3">
         <div class="gif-container">
             <img src="flower2.gif" alt="Cute Flower 2">
         </div>
-        <p>I hope aapka din utna hi pyara ho, jitni pyari aapki smile hai... 😊</p>
-        <button class="btn" onclick="nextPage(3)">Ek aur baat 🌻</button>
+        <p>I HOPE YOUR DAY IS AS LOVELY AS YOUR SMILE... 😊</p>
+        <button class="btn" onclick="nextPage(3)">ONE MORE THING 🌻</button>
     </div>
 
     <div class="page" id="page-4">
         <div class="gif-container">
             <img src="flower3.gif" alt="Cute Flower 3">
         </div>
-        <h1>Will you be my good friend? 🥰</h1>
-        <p>Toh kya hum dost ban sakte hain?</p>
+        <h1>WILL YOU BE MY GOOD FRIEND? 🥰</h1>
+        <p>SO, CAN WE BE FRIENDS?</p>
         <div id="yes-container">
-            <button class="btn" id="yes-btn" onclick="sayYes()">Yes 🤝</button>
-            <button class="btn no-btn" id="no-btn" onclick="noThanks()">No 🫣</button>
+            <button class="btn" id="yes-btn" onclick="sayYes()">YES 🤝</button>
+            <button class="btn no-btn" id="no-btn" onclick="noThanks()">NO 🫣</button>
         </div>
     </div>
 
     <div class="page" id="page-5">
-        <h1>Yay! Thank you Soni Ji! 😊✨</h1>
-        <p>It's the start of a beautiful friendship... Have a wonderful day ahead! 🌸</p>
+        <h1>YAY! THANK YOU SURUCHI! 😊✨</h1>
+        <p>IT'S THE START OF A BEAUTIFUL FRIENDSHIP... HAVE A WONDERFUL DAY AHEAD! 🌸</p>
     </div>
 
     <script>
@@ -235,28 +232,25 @@
         }
 
         function noThanks() {
-            // Add a few more 'Yes' buttons before the 'No' button
-            if (yesCount < 12) { // Limit max buttons so it doesn't lag
+            if (yesCount < 12) {
                 let extraYes = Math.floor(Math.random() * 2) + 1;
                 for (let i = 0; i < extraYes; i++) {
                     let y = document.createElement('button');
                     y.className = 'btn';
-                    y.innerText = 'Yes 🤝';
+                    y.innerText = 'YES 🤝';
                     y.onclick = sayYes;
                     yesContainer.insertBefore(y, noBtn);
                     yesCount++;
                 }
             } else {
-                noBtn.innerText = "Maan jao na! 🥺";
+                noBtn.innerText = "PLEASE SAY YES! 🥺";
             }
         }
 
-        // Optimized element creator
         function createElements() {
             const container = document.getElementById('bg-container');
-            const emojis = ['✨', '🌸', '😊', '🌻']; // Changed from just hearts to friendly emojis
+            const emojis = ['✨', '🌸', '😊', '🌻'];
             
-            // Reduced count to 12 for smoother mobile performance
             for (let i = 0; i < 12; i++) {
                 let el = document.createElement('div');
                 el.className = 'heart';
@@ -269,7 +263,6 @@
             }
         }
         
-        // Use requestAnimationFrame for smoother initial load
         window.onload = () => requestAnimationFrame(createElements);
     </script>
 </body>
