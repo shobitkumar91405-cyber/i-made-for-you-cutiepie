@@ -4,280 +4,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Cutee ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink-glow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
-            --main-pink: #ff69b4;
+            --pink-glow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
+            --main-pink: #ff1493;
             --soft-pink: #fff0f5;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Georgia', serif;
-            background-color: #ffffff;
-            color: #333;
-            overflow: hidden;
-            scroll-behavior: smooth;
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Poppins', sans-serif; background: #fff; overflow: hidden; }
+
+        .insta-banner {
+            position: fixed; top: 0; width: 100%; text-align: center; padding: 12px;
+            background: rgba(255, 255, 255, 0.95); z-index: 2000; font-weight: 600;
+            color: var(--main-pink); border-bottom: 1px solid var(--soft-pink); font-size: 0.9rem;
         }
 
-        /* Top Banner */
-        .top-banner {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
-            background: rgba(255, 255, 255, 0.8);
-            z-index: 1000;
-            font-weight: bold;
-            text-shadow: var(--pink-glow);
-            color: var(--main-pink);
-            border-bottom: 1px solid var(--soft-pink);
-        }
-
-        /* Full Screen Sections */
         section {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            width: 100%; height: 100vh; display: none; flex-direction: column;
+            justify-content: center; align-items: center; padding: 20px;
+            background: radial-gradient(circle, #ffffff 0%, #fffafa 100%);
             position: relative;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            background: radial-gradient(circle, #ffffff 0%, #fff5f8 100%);
-            display: none; /* Hidden by default for logic */
         }
 
-        section.active {
-            display: flex;
-            animation: fadeIn 1s ease-in-out;
+        section.active { display: flex; animation: fadeIn 0.5s ease; }
+
+        /* Shairi Page Specifics */
+        #p2 { display: none; height: 100vh; overflow-y: auto; overflow-x: hidden; justify-content: flex-start; padding-top: 80px; scroll-behavior: smooth; }
+        #p2.active { display: block; }
+
+        .chat-container { width: 100%; position: relative; min-height: 1200px; }
+        #canvas-lines { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; }
+        
+        .bubble {
+            background: white; padding: 12px 18px; border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.1); border: 1px solid var(--soft-pink);
+            position: absolute; z-index: 2; font-size: 0.95rem; max-width: 75%;
+            color: #333; opacity: 0; transform: translateY(10px); transition: 0.6s all;
+            text-shadow: 0 0 2px rgba(255, 20, 147, 0.2);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .dot {
+            width: 14px; height: 14px; background: var(--main-pink);
+            border-radius: 50%; box-shadow: var(--pink-glow);
+            position: absolute; z-index: 3; opacity: 0; transform: scale(0);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .glowing-text {
-            font-size: 1.5rem;
-            color: #ff1493;
-            text-shadow: var(--pink-glow);
-            margin: 15px 0;
-            line-height: 1.6;
+            color: var(--main-pink); text-shadow: var(--pink-glow);
+            font-family: 'Dancing Script', cursive; font-size: 1.8rem;
+            margin: 10px 0;
         }
 
-        /* Buttons */
-        .btn-continue {
-            margin-top: 30px;
-            padding: 12px 35px;
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
-            transition: 0.3s;
+        .btn-love {
+            padding: 14px 45px; background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white; border: none; border-radius: 50px; font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4); cursor: pointer;
+            z-index: 1000; transition: 0.3s;
         }
 
-        .btn-continue:hover {
-            transform: scale(1.05);
-            box-shadow: var(--pink-glow);
-        }
+        .btn-love:active { transform: scale(0.9); }
 
-        /* Specific styles for Shairi dots */
-        .shairi-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .dot-line {
-            width: 2px;
-            height: 40px;
-            background: var(--main-pink);
-            box-shadow: var(--pink-glow);
-            margin: 5px 0;
-        }
+        /* Gauge for Love Test */
+        .gauge-box { font-size: 4rem; font-weight: 800; color: var(--main-pink); text-shadow: var(--pink-glow); }
 
         /* Scratch Card */
-        #scratch-container {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            border: 2px solid var(--soft-pink);
-        }
+        #scratch-card { position: relative; width: 300px; height: 200px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 20px 0; }
+        #canvas-scratch { position: absolute; top: 0; left: 0; z-index: 2; cursor: crosshair; }
+        .hidden-content { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: white; z-index: 1; }
 
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-        }
-
-        .revealed-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-        }
-
-        .intro-gif { width: 250px; border-radius: 20px; }
+        .intro-gif { width: 220px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
-    <div class="top-banner">follow on insta - @smss1708</div>
-
-    <audio id="bgMusic" loop>
-        <source src="tere-liye.mp3" type="audio/mpeg">
-    </audio>
+    <div class="insta-banner">follow on insta - @smss1708</div>
+    <audio id="bgMusic" loop><source src="tere-liye.mp3" type="audio/mpeg"></audio>
 
     <section id="p1" class="active">
-        <img src="intro.gif" class="intro-gif" alt="Cute GIF">
-        <p class="glowing-text">Loading love...</p>
+        <img src="gif1.gif" class="intro-gif">
+        <h2 class="glowing-text">hii cutee i want to say something</h2>
+        <button class="btn-love" onclick="startApp()">Continue ❤️</button>
     </section>
 
     <section id="p2">
-        <h1 class="glowing-text">Hii cutee,<br>I want to say something...</h1>
-        <button class="btn-continue" onclick="nextPage(2, 3)">Continue ❤️</button>
+        <div class="chat-container" id="chat-box">
+            <canvas id="canvas-lines"></canvas>
+            </div>
+        <div style="width:100%; display:flex; justify-content:center; padding: 40px 0;">
+            <button class="btn-love" id="btnNext" style="display:none;" onclick="nextPage(2,3)">Continue ❤️</button>
+        </div>
     </section>
 
     <section id="p3">
-        <div class="shairi-container">
-            <p class="glowing-text">Tum bologi dhimi aavaz me</p>
-            <div class="dot-line"></div>
-            <p class="glowing-text">fir bhi bat pakad lunga</p>
-            <div class="dot-line"></div>
-            <p class="glowing-text">gale nhi lagaunga tumko</p>
-            <div class="dot-line"></div>
-            <p class="glowing-text">bus hath pakad lunga</p>
-        </div>
-        <button class="btn-continue" onclick="nextPage(3, 4)">Continue ❤️</button>
+        <h2 class="glowing-text" style="font-size: 2.2rem;">Our Compatibility</h2>
+        <div class="gauge-box" id="gauge">0%</div>
+        <p class="glowing-text" style="font-size: 1.2rem;">Perfect Match 💖 Our hearts beat as one.</p>
+        <button class="btn-love" onclick="nextPage(3,4)">Continue ❤️</button>
     </section>
 
     <section id="p4">
-        <div class="shairi-container">
-            <p class="glowing-text">aur is thodi si mohabbat ki aag me</p>
-            <div class="dot-line"></div>
-            <p class="glowing-text">jindgi bhar jana hai</p>
+        <div style="background: white; padding: 40px; border-radius: 30px; border: 1px solid var(--soft-pink); box-shadow: 0 15px 35px var(--soft-pink); width: 85%;">
+            <div style="font-size: 4rem;">🌙</div>
+            <p class="glowing-text">I promise to be your peace when life feels too loud.</p>
         </div>
-        <button class="btn-continue" onclick="nextPage(4, 5)">Continue ❤️</button>
+        <button class="btn-love" onclick="nextPage(4,5)">Show Surprise 🎁</button>
     </section>
 
     <section id="p5">
-        <div class="shairi-container">
-            <p class="glowing-text">hotel me nhi jana mujhko</p>
-            <div class="dot-line"></div>
-            <p class="glowing-text">sadak pe sath chalna hai</p>
-        </div>
-        <button class="btn-continue" onclick="nextPage(5, 6)">Continue ❤️</button>
-    </section>
-
-    <section id="p6">
-        <div class="shairi-container">
-            <p class="glowing-text">fir bhi is duniya se nikal ke</p>
-            <p class="glowing-text">mujhme kho sakti ho kya</p>
-            <p class="glowing-text">jyada ki chah nhi mujhko</p>
-            <p class="glowing-text">thodi di meri ho sakti ho kya 💯</p>
-        </div>
-        <button class="btn-continue" onclick="nextPage(6, 7)">Continue ❤️</button>
-    </section>
-
-    <section id="p7">
-        <h2 class="glowing-text">Reasons Why I Love You ✨</h2>
-        <p class="glowing-text" style="font-size: 1.1rem;">Because every little thing about you feels like home</p>
-        <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px; margin: 5px;">You read my silence.</div>
-        <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px; margin: 5px;">You stand with me.</div>
-        <button class="btn-continue" onclick="nextPage(7, 8)">Continue ❤️</button>
-    </section>
-
-    <section id="p8">
-        <h2 class="glowing-text">Love Compatibility Test</h2>
-        <div style="font-size: 3rem; font-weight: bold; color: var(--main-pink); text-shadow: var(--pink-glow);">100%</div>
-        <p class="glowing-text">Perfect Match 💖 Our hearts beat as one.</p>
-        <button class="btn-continue" onclick="nextPage(8, 9)">Continue ❤️</button>
-    </section>
-
-    <section id="p9">
-        <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.05);">
-            <span style="font-size: 3rem;">🌙</span>
-            <p class="glowing-text">I promise to be your peace when life feels too loud.</p>
-        </div>
-        <button class="btn-continue" onclick="nextPage(9, 10)">Close 💗</button>
-    </section>
-
-    <section id="p10">
-        <h2 class="glowing-text">A Little Surprise</h2>
-        <p>Scratch gently...</p>
-        <div id="scratch-container">
-            <div class="revealed-content">
-                <p class="glowing-text">I Love You Forever! ❤️</p>
+        <h2 class="glowing-text">A Little Surprise For You</h2>
+        <div id="scratch-card">
+            <div class="hidden-content">
+                <p class="glowing-text" style="font-size: 1.4rem;">I Love You So Much! ❤️</p>
+                <p style="color: var(--main-pink); font-weight: bold; margin-top: 5px;">@smss1708</p>
             </div>
-            <canvas id="scratchCanvas" width="300" height="200"></canvas>
+            <canvas id="canvas-scratch" width="300" height="200"></canvas>
         </div>
+        <button class="btn-love" style="margin-top:20px;" onclick="location.reload()">Replay ❤️</button>
     </section>
 
     <script>
-        // Page Navigation
-        function nextPage(current, next) {
-            document.getElementById('p' + current).classList.remove('active');
-            document.getElementById('p' + next).classList.add('active');
-            
-            // Start Music on first click
-            let music = document.getElementById('bgMusic');
-            if (music.paused) {
-                music.play().catch(e => console.log("Audio play blocked by browser"));
-            }
+        const shairiLines = [
+            "Tum bologi dhimi aavaz me", "fir bhi bat pakad lunga",
+            "gale nhi lagaunga tumko", "bus hath pakad lunga",
+            "aur is thodi si mohabbat ki aag me", "jindgi bhar jana hai",
+            "hotel me nhi jana mujhko", "sadak pe sath chalna hai",
+            "fir bhi is duniya se nikal ke mujhme kho sakti ho kya",
+            "jyada ki chah nhi mujhko thodi di meri ho sakti ho kya💯"
+        ];
 
-            if(next === 10) initScratch();
+        const music = document.getElementById('bgMusic');
+        let currentStep = 0;
+        let lastDotX, lastDotY;
+
+        function startApp() {
+            music.play();
+            nextPage(1, 2);
+            setTimeout(initShairi, 500);
         }
 
-        // Auto transition for Page 1
-        setTimeout(() => {
-            nextPage(1, 2);
-        }, 4000);
+        function nextPage(curr, next) {
+            document.getElementById('p' + curr).classList.remove('active');
+            document.getElementById('p' + next).classList.add('active');
+            if(next === 3) startGauge();
+            if(next === 5) initScratch();
+        }
 
-        // Scratch Card Logic
+        function initShairi() {
+            const container = document.getElementById('chat-box');
+            const canvas = document.getElementById('canvas-lines');
+            canvas.width = window.innerWidth;
+            canvas.height = 1500; // Enough height for all lines
+            const ctx = canvas.getContext('2d');
+            ctx.strokeStyle = '#ff1493';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 6]);
+
+            function spawnLine() {
+                if (currentStep >= shairiLines.length) {
+                    document.getElementById('btnNext').style.display = 'block';
+                    return;
+                }
+
+                const isLeft = currentStep % 2 === 0;
+                const y = 60 + (currentStep * 110);
+                
+                // 1. Create Bubble
+                const b = document.createElement('div');
+                b.className = 'bubble';
+                b.innerText = shairiLines[currentStep];
+                b.style.top = y + 'px';
+                if(isLeft) b.style.left = '15px'; else b.style.right = '15px';
+                container.appendChild(b);
+
+                // 2. Create Dot
+                const d = document.createElement('div');
+                d.className = 'dot';
+                const dotX = isLeft ? 200 : window.innerWidth - 200;
+                const dotY = y + 25;
+                d.style.left = dotX + 'px';
+                d.style.top = dotY + 'px';
+                container.appendChild(d);
+
+                // 3. Animate
+                setTimeout(() => {
+                    b.style.opacity = '1';
+                    b.style.transform = 'translateY(0)';
+                    d.style.opacity = '1';
+                    d.style.transform = 'scale(1)';
+
+                    // Draw Line from previous dot
+                    if (currentStep > 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(lastDotX + 7, lastDotY + 7);
+                        ctx.lineTo(dotX + 7, dotY + 7);
+                        ctx.stroke();
+                    }
+
+                    lastDotX = dotX; lastDotY = dotY;
+                    currentStep++;
+
+                    // Auto-scroll the page
+                    document.getElementById('p2').scrollTo({top: y - 100, behavior: 'smooth'});
+
+                    setTimeout(spawnLine, 1200);
+                }, 100);
+            }
+            spawnLine();
+        }
+
+        function startGauge() {
+            let count = 0;
+            const target = 100;
+            const timer = setInterval(() => {
+                count++;
+                document.getElementById('gauge').innerText = count + "%";
+                if(count === target) clearInterval(timer);
+            }, 25);
+        }
+
         function initScratch() {
-            const canvas = document.getElementById('scratchCanvas');
+            const canvas = document.getElementById('canvas-scratch');
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = '#ffc0cb';
             ctx.fillRect(0, 0, 300, 200);
-            ctx.fillStyle = '#ff69b4';
-            ctx.font = "20px Arial";
-            ctx.fillText("Scratch Me ❤️", 80, 100);
+            ctx.fillStyle = '#ff1493';
+            ctx.font = "bold 18px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("SCRATCH WITH LOVE ❤️", 150, 105);
 
-            let isDrawing = false;
-
-            function scratch(e) {
-                if (!isDrawing) return;
+            let isScratching = false;
+            const scratch = (e) => {
+                if(!isScratching) return;
                 const rect = canvas.getBoundingClientRect();
                 const x = (e.clientX || e.touches[0].clientX) - rect.left;
                 const y = (e.clientY || e.touches[0].clientY) - rect.top;
                 ctx.globalCompositeOperation = 'destination-out';
-                ctx.beginPath();
-                ctx.arc(x, y, 20, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            canvas.addEventListener('mousedown', () => isDrawing = true);
-            canvas.addEventListener('touchstart', () => isDrawing = true);
-            window.addEventListener('mouseup', () => isDrawing = false);
-            window.addEventListener('touchend', () => isDrawing = false);
-            canvas.addEventListener('mousemove', scratch);
-            canvas.addEventListener('touchmove', scratch);
+                ctx.beginPath(); ctx.arc(x, y, 25, 0, Math.PI*2); ctx.fill();
+            };
+            canvas.onmousedown = canvas.ontouchstart = () => isScratching = true;
+            window.onmouseup = window.ontouchend = () => isScratching = false;
+            canvas.onmousemove = canvas.ontouchmove = scratch;
         }
     </script>
 </body>
