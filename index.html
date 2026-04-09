@@ -1,170 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For You Cutie Pie 💖</title>
-    <style>
-        :root {
-            --primary: #ff4d6d;
-            --glass: rgba(255, 255, 255, 0.12);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For You Cutie Pie 💖</title>
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle, #1a0a0d, #000);
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            color: white;
-            touch-action: none; /* Screen block feel */
-        }
+<style>
+:root {
+    --primary: #ff4d6d;
+    --glass: rgba(255, 255, 255, 0.12);
+}
 
-        /* Floating Hearts Animation */
-        .heart-particle {
-            position: absolute;
-            color: var(--primary);
-            pointer-events: none;
-            z-index: 1;
-            animation: moveUp linear forwards;
-        }
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #1a0a0d, #000);
+    font-family: Arial;
+    overflow: hidden;
+    color: white;
+}
 
-        @keyframes moveUp {
-            to { transform: translateY(-110vh) rotate(360deg); }
-        }
+/* hearts */
+.heart-particle {
+    position: absolute;
+    color: var(--primary);
+    pointer-events: none;
+    animation: moveUp linear forwards;
+}
 
-        /* Luxury Card Styling */
-        #main-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 20px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 77, 109, 0.2);
-            z-index: 10;
-            width: 85%;
-            max-width: 350px;
-            transition: all 0.5s ease;
-        }
+@keyframes moveUp {
+    to { transform: translateY(-110vh) rotate(360deg); }
+}
 
-        .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 0 25px var(--primary);
-        }
+/* card */
+#main-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    padding: 40px 20px;
+    border-radius: 30px;
+    text-align: center;
+}
 
-        h1 { font-size: 26px; margin: 10px 0; text-shadow: 0 0 10px var(--primary); font-weight: bold; }
-        p { font-size: 16px; opacity: 0.8; margin-bottom: 30px; }
+.profile-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+}
 
-        .magic-btn {
-            background: linear-gradient(45deg, #ff4d6d, #ff758c);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+.magic-btn {
+    background: linear-gradient(45deg, #ff4d6d, #ff758c);
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
 
-        /* Total Blackout Screen */
-        #blackout {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: #000000;
-            z-index: 9999;
-            display: none;
-        }
-    </style>
+/* blackout */
+#blackout {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: none;
+    z-index: 9999;
+}
+
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #ff4d6d;
+    font-size: 28px;
+}
+</style>
 </head>
+
 <body>
 
-    <div id="heart-box"></div>
+<div id="heart-box"></div>
 
-    <div id="main-card">
-        <img src="photo1.jpg" alt="Special" class="profile-img">
-        <h1>Hii Cutie Pie! 💖</h1>
-        <p>I made something special for you... tap below!</p>
-        <button class="magic-btn" onclick="startTheMagic()">Click Me ✨</button>
-    </div>
+<div id="main-card">
+    <img src="photo1.jpg" class="profile-img">
+    <h1>Hii Cutie Pie! 💖</h1>
+    <p>I made something special for you... tap below!</p>
+    <button class="magic-btn" onclick="startTheMagic()">Click Me ✨</button>
+</div>
 
-    <div id="blackout"></div>
+<div id="blackout">
+    <div id="text">💕 Tere Liye 💕</div>
+</div>
 
-    <audio id="bg-music" loop>
-        <source src="newsong.mp3" type="audio/mpeg">
-    </audio>
+<!-- 🔥 UPDATED AUDIO (newsong.mp3) -->
+<audio id="a1" src="newsong.mp3" loop playsinline></audio>
+<audio id="a2" src="newsong.mp3" loop playsinline></audio>
+<audio id="a3" src="newsong.mp3" loop playsinline></audio>
 
-    <script>
-        // 1. Particle Effect (Hearts)
-        function createHeart() {
-            const container = document.getElementById('heart-box');
-            const heart = document.createElement('div');
-            heart.className = 'heart-particle';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '105vh';
-            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            container.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }
-        setInterval(createHeart, 400);
+<script>
 
-        // 2. The Magic Function
-        function startTheMagic() {
-            const song = document.getElementById('bg-music');
-            const blackout = document.getElementById('blackout');
-            const card = document.getElementById('main-card');
+// hearts
+function createHeart() {
+    const box = document.getElementById('heart-box');
+    const h = document.createElement('div');
+    h.className = 'heart-particle';
+    h.innerHTML = '❤️';
+    h.style.left = Math.random()*100+'vw';
+    h.style.top = '100vh';
+    h.style.animationDuration = (Math.random()*3+3)+'s';
+    box.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+}
+setInterval(createHeart,400);
 
-            // Force Fullscreen for "System Off" effect
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.webkitRequestFullscreen) {
-                document.documentElement.webkitRequestFullscreen();
-            }
+// audio list
+let audios = [
+document.getElementById("a1"),
+document.getElementById("a2"),
+document.getElementById("a3")
+];
 
-            // Start Music
-            song.play();
+function startTheMagic(){
 
-            // Aggressive Volume Lock (10ms interval)
-            setInterval(() => {
-                song.volume = 1.0; 
-            }, 10);
+    // fullscreen
+    document.documentElement.requestFullscreen?.();
 
-            // Strong Vibration Loop
-            if ("vibrate" in navigator) {
-                navigator.vibrate([1000, 500, 1000, 500, 1000]); // Initial burst
-                setInterval(() => {
-                    navigator.vibrate([1000, 200, 1000]); 
-                }, 1200);
-            }
+    // 🔊 audio play fix
+    audios.forEach(a=>{
+        a.load();
+        a.volume = 1;
+        a.play().catch(()=>{});
+    });
 
-            // UI Transition to Blackout
-            card.style.transform = "scale(0.8)";
-            card.style.opacity = "0";
-            
-            setTimeout(() => {
-                card.style.display = 'none';
-                blackout.style.display = 'block';
-                // Screen is now totally black, music is full, phone is vibrating.
-            }, 400);
-        }
-    </script>
+    // 🔁 volume illusion (safe)
+    setInterval(()=>{
+        audios.forEach(a=> a.volume = 1);
+    },100);
+
+    // 📳 vibration
+    if(navigator.vibrate){
+        setInterval(()=>{
+            navigator.vibrate([500,200,500]);
+        },1200);
+    }
+
+    // UI change
+    document.getElementById("main-card").style.display="none";
+    document.getElementById("blackout").style.display="block";
+
+    // back block feel
+    history.pushState(null,null,location.href);
+    window.onpopstate=function(){
+        history.go(1);
+    };
+}
+
+</script>
+
 </body>
 </html>
